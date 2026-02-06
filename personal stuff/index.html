@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Journey</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style id="app-style">
+        :root {
+            --primary-color: #6c63ff;
+            --secondary-color: #ff6584;
+            --tertiary-color: #43cea2;
+            --accent-color: #f9c80e;
+            --dark-color: #333;
+            --light-color: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            position: relative;
+            background-color: green;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -2px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 100%;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 80px 0;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: -10px;
+            left: 0;
+        }
+
+        .btn-custom {
+            background-color: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.2);
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+            background-color: #5a52e5;
+        }
+
+        /* Home Section */
+        .home-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: calc(100vh - 80px);
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .typed-text {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin: 0 8px;
+            color: var(--primary-color);
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-3px);
+            color: white;
+            background-color: var(--primary-color);
+        }
+
+        /* Childhood Section */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background-color: var(--primary-color);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-item:nth-child(odd) {
+            float: left;
+            clear: both;
+        }
+
+        .timeline-item:nth-child(even) {
+            float: right;
+            clear: both;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            top: calc(50% - 8px);
+            width: 16px;
+            height: 16px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd):before {
+            right: -8px;
+        }
+
+        .timeline-item:nth-child(even):before {
+            left: -8px;
+        }
+
+        .timeline-date {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Education Section */
+        .education-card {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: white;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .degree {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .school {
+            font-weight: 500;
+        }
+
+        .education-date {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .achievement {
+            margin-top: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .achievement:before {
+            content: '\f0a4';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--tertiary-color);
+        }
+
+        /* Skills Section */
+        .skill-card {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            background-color: white;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .skill-progress {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e9ecef;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 1.5s ease;
+        }
+
+        .hobby-icon {
+            font-size: 30px;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Future Section */
+        .milestone-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .milestone-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .milestone-year {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .milestone-icon {
+            font-size: 30px;
+            margin-right: 15px;
+            color: var(--tertiary-color);
+        }
+
+        .milestone-content {
+            flex: 1;
+        }
+
+        .vision-img {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Section */
+        .contact-info {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-right: 15px;
+        }
+
+        .form-control {
+            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+
+        .map-container {
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 767px) {
+            .timeline:before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-right: 30px;
+                padding-left: 50px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                float: none;
+            }
+
+            .timeline-item:nth-child(odd):before,
+            .timeline-item:nth-child(even):before {
+                left: 12px;
+            }
+
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .preloader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar">
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="javascript:void(0)">William Ogendo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#childhood">Childhood</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills & Talents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#future">Future Aspirations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="container home-container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-center text-lg-start" data-aos="fade-right" data-aos-duration="1000">
+                    <h1 class="mb-4">Hi, I'm <span class="typed-text">William Ogendo</span></h1>
+                    <h3 class="mb-4">Software Engineering Student & Web Developer</h3>
+                    <p class="lead mb-4">I'm passionate about creating innovative solutions through technology and constantly learning new skills to expand my knowledge base.</p>
+                    <div class="social-icons mb-4">
+                        <a href="javascript:void(0)" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="javascript:void(0)" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="javascript:void(0)" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="javascript:void(0)" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <a href="#contact" class="btn btn-custom">Get In Touch</a>
+                </div>
+                <div class="col-lg-6 text-center" data-aos="fade-left" data-aos-duration="1000">
+                    <img src="william.jpeg" alt="william" class="profile-img img-fluid mt-5 mt-lg-0">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Childhood Section -->
+    <section id="childhood" class="section">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">My Childhood Journey</h2>
+            <div class="timeline clearfix">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-date">2005</div>
+                    <h4>Born in Ahero, Kisumu</h4>
+                    <p>I was born in Ahero, Kisumu County to a family of educators. From an early age, I was surrounded by books and a love for learning.</p>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-date">2019</div>
+                    <h4>First Computer</h4>
+                    <p>My parents bought me my first computer when I was in class 8. I was immediately fascinated by how it worked and spent hours exploring its features.</p>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-date">2021</div>
+                    <h4>Science Camp</h4>
+                    <p>Attended my first science camp where I built a small robot when I was in form 2. This experience sparked my interest in technology and engineering.</p>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-date">2022</div>
+                    <h4>Trip to safaricom shop</h4>
+                    <p>Visiting tech companies like safaricom with my family inspired me to dream about working in technology someday.</p>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-date">2024</div>
+                    <h4>First Coding Experience</h4>
+                    <p>I wrote my first lines of code in Scratch when I joined Kirinyaga university, creating simple games and animations. This was when I decided I wanted to become a programmer.</p>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-6" data-aos="fade-up">
+                    <div class="card">
+                        <img src="og.jpeg" class="card-img-top" alt="og">
+                        <div class="card-body">
+                            <h5 class="card-title">Outdoor Exploration</h5>
+                            <p class="card-text">Growing up in the Pacific Northwest, hiking and exploring nature became essential parts of my childhood.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card">
+                        <img src="tech.jpeg" class="card-img-top" alt="tech">
+                        <div class="card-body">
+                            <h5 class="card-title">Outdoor Exploration</h5>
+                            <p class="card-text">Books were my first window to the world. Science fiction and adventure stories fueled my imagination and curiosity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Educational Journey</h2>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="education-card" data-aos="fade-up">
+                        <div class="row">
+                            <div class="col-md-3 text-center text-md-start">
+                                <img src="kyu.jpeg" alt="University" class="img-fluid rounded mb-3">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="degree">Bachelor of Science in Software Engineering</div>
+                                <div class="school">Kirinyaga University</div>
+                                <div class="education-date">2024 - Present</div>
+                                <p class="mt-3">Currently pursuing my degree in Bachelor of science in Software engineering</p>
+                                <div class="achievement">Dean's List for 4 academic Years, 8 semesters</div>
+                                <div class="achievement">Looking forwad to improve my tech skills</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="education-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="row">
+                            <div class="col-md-3 text-center text-md-start">
+                                <img src="Thur.jpeg" alt="High School" class="img-fluid rounded mb-3">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="degree">Secondary schooling</div>
+                                <div class="school">Thurdibuoro Secondary School</div>
+                                <div class="education-date">2020 - 2023</div>
+                                <p class="mt-3">Finished the 4 year course with an average grade of B (Plain).</p>
+                                <div class="achievement">Class Prefect form 4</div>
+                                <div class="achievement">Secretary, Computer lab</div>
+                                <div class="achievement">Chairman, Young farmers Club</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="education-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="row">
+                            <div class="col-md-3 text-center text-md-start">
+                                <img src="Alara.jpeg" alt="Alara Primary" class="img-fluid rounded mb-3">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="degree">Primary Schooling</div>
+                                <div class="school">Alara Primary School</div>
+                                <div class="education-date">2012 - 2019</div>
+                                <p class="mt-3">Completed my 8-year course with an average marks of 361/500.</p>
+                                <div class="achievement">Class Prefect class 6 and 8</div>
+                                <div class="achievement">Games Captain class 8</div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-6" data-aos="fade-right">
+                    <h4 class="mb-4">Extracurricular Activities</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Member of Computer Society of Kirinyaga</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Active Participant in Upliftsociety group</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Member of Mumi Fan base</li>
+                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Online blogger </li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-6" data-aos="fade-left">
+                    <h4 class="mb-4">Notable Projects</h4>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Personal Portfolio Website</h5>
+                            <p class="card-text">A responsive website that showcases my profile, skills, projects, and contact information. It acts as a professional online presence for potential employers or clients.
+Skills shown: web design, responsiveness, personal branding.</p>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Online Voting system</h5>
+                            <p class="card-text">A secure platform that allows eligible users to vote electronically while ensuring that each user can vote only once. Administrators can manage candidates and view real-time results.
+Skills shown: security, data integrity, role-based access control.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Business Portfolio Website</h5>
+                            <p class="card-text">A professionally designed website created for a client to showcase their business profile, services, and completed work. The website serves as an online portfolio, helping the business establish a strong digital presence and attract potential clients through a clear, responsive, and user-friendly interface.<br>etc</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Skills & Talents</h2>
+            
+            <div class="row">
+                <h3 class="mb-4" data-aos="fade-up">Technical Skills</h3>
+                
+                <div class="col-md-4 mb-4" data-aos="zoom-in">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h4 class="skill-name">Web Development</h4>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-progress="90"></div>
+                        </div>
+                        <p>HTML, CSS, JavaScript, React, Node.js</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4 class="skill-name">Mobile Development</h4>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-progress="75"></div>
+                        </div>
+                        <p>React Native, Flutter, iOS & Android</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4 class="skill-name">Database Management</h4>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-progress="80"></div>
+                        </div>
+                        <p>MySQL, MongoDB, PostgreSQL, Firebase</p>
+                    </div>
+                </div>
+            
+            <div class="row mt-5">
+                <h3 class="mb-4" data-aos="fade-up">Soft Skills</h3>
+                
+                <div class="col-md-3 text-center mb-4" data-aos="fade-up">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <i class="fas fa-comments fa-2x text-primary mb-3"></i>
+                        <h5>Communication</h5>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 text-center mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <i class="fas fa-users fa-2x text-primary mb-3"></i>
+                        <h5>Teamwork</h5>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 text-center mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <i class="fas fa-lightbulb fa-2x text-primary mb-3"></i>
+                        <h5>Problem Solving</h5>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 text-center mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <i class="fas fa-tasks fa-2x text-primary mb-3"></i>
+                        <h5>Project Management</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <h3 class="mb-4" data-aos="fade-up">Hobbies & Interests</h3>
+                
+                <div class="col-md-3 col-6 text-center mb-4" data-aos="flip-left">
+                    <div class="hobby-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h5>Hiking</h5>
+                </div>
+                
+                <div class="col-md-3 col-6 text-center mb-4" data-aos="flip-left" data-aos-delay="100">
+                    <div class="hobby-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h5>Reading</h5>
+                </div>
+                
+                <div class="col-md-3 col-6 text-center mb-4" data-aos="flip-left" data-aos-delay="200">
+                    <div class="hobby-icon">
+                        <i class="fas fa-chess"></i>
+                    </div>
+                    <h5>Chess</h5>
+                </div>
+                
+                <div class="col-md-3 col-6 text-center mb-4" data-aos="flip-left" data-aos-delay="300">
+                    <div class="hobby-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h5>Photography</h5>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <a href="#projects" class="btn btn-custom">View My Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Aspirations Section -->
+    <section id="future" class="section">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Future Aspirations</h2>
+            
+            <div class="row mb-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h3 class="mb-4">My Vision</h3>
+                    <p class="lead">I aspire to become a leading innovator in the tech industry, developing solutions that positively impact people's lives through technology.</p>
+                    <p>My journey is guided by a passion for creating accessible technology that solves real-world problems. I believe in the power of continuous learning and adapting to the rapidly evolving tech landscape.</p>
+                    <p>In the next decade, I see myself contributing to groundbreaking projects in artificial intelligence and sustainable technology, while mentoring the next generation of tech enthusiasts.</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <img src="https://cdn.pixabay.com/photo/2017/08/10/02/05/tiles-shapes-2617112_1280.jpg" alt="Future Vision" class="img-fluid rounded vision-img">
+                </div>
+            </div>
+            
+            <h3 class="mb-4 text-center" data-aos="fade-up">Career Roadmap</h3>
+            
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="milestone-card" data-aos="fade-up">
+                        <div class="d-flex">
+                            <div class="milestone-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="milestone-content">
+                                <div class="milestone-year">2028</div>
+                                <h4>Complete Bachelor's Degree</h4>
+                                <p>Graduate with honors in Software and secure an internship at a leading tech company.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="milestone-card" data-aos="fade-up">
+                        <div class="d-flex">
+                            <div class="milestone-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div class="milestone-content">
+                                <div class="milestone-year">2028-2030</div>
+                                <h4>Industry Experience</h4>
+                                <p>Work as a software engineer to gain hands-on experience in developing enterprise-level applications.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="milestone-card" data-aos="fade-up">
+                        <div class="d-flex">
+                            <div class="milestone-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="milestone-content">
+                                <div class="milestone-year">2031-2034</div>
+                                <h4>Master's Degree</h4>
+                                <p>Pursue a Master's in Artificial Intelligence or Machine Learning to deepen my technical expertise.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="milestone-card" data-aos="fade-up">
+                        <div class="d-flex">
+                            <div class="milestone-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="milestone-content">
+                                <div class="milestone-year">2034-2036</div>
+                                <h4>Tech Startup</h4>
+                                <p>Launch a tech startup focused on developing AI solutions for healthcare or environmental sustainability.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="milestone-card" data-aos="fade-up">
+                        <div class="d-flex">
+                            <div class="milestone-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="milestone-content">
+                                <div class="milestone-year">2036-2040</div>
+                                <h4>Global Impact</h4>
+                                <p>Scale solutions to international markets and collaborate with organizations worldwide to solve global challenges.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="milestone-card" data-aos="fade-up">
+                        <div class="d-flex">
+                            <div class="milestone-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <div class="milestone-content">
+                                <div class="milestone-year">2040+</div>
+                                <h4>Mentorship & Teaching</h4>
+                                <p>Give back to the community through teaching, mentorship programs, and supporting tech education in underserved areas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-12" data-aos="fade-up">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Current Goals</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Complete advanced AI coursework</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Secure a summer internship at a tech company</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Present research at student conferences</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Build a comprehensive portfolio of projects</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Contribute to open-source projects</li>
+                                        <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i> Network with professionals in the industry</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-aos="fade-up">Get In Touch</h2>
+            
+            <div class="row">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <div class="contact-info">
+                        <h3 class="mb-4">Contact Information</h3>
+                        
+                        <div class="d-flex mb-4">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Location</h5>
+                                <p>Seattle, Washington, USA</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex mb-4">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5>Email</h5>
+                                <p>alex.turner@example.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex mb-4">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5>Phone</h5>
+                                <p>(123) 456-7890</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="mt-5 mb-3">Find me on</h4>
+                        <div class="social-icons">
+                            <a href="javascript:void(0)" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="javascript:void(0)" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="javascript:void(0)" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h4 class="mb-3">My GitHub</h4>
+                        <a href="https://github.com/alexturner" class="btn btn-dark" target="_blank"><i class="fab fa-github me-2"></i>github.com/alexturner</a>
+                        <p class="mt-2">Check out my repositories and contributions to open-source projects.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="contact-form">
+                        <h3 class="mb-4">Send Me a Message</h3>
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mt-3">
+                                <label for="subject">Subject</label>
+                                <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+                            </div>
+                            
+                            <div class="form-group mt-3">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-custom">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-12" data-aos="zoom-in">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d172139.41616199757!2d-122.48214603858331!3d47.6130284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490102c93e83355%3A0x102565466944d59a!2sSeattle%2C%20WA!5e0!3m2!1sen!2sus!4v1653456789012!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    
+    <script id="app-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animation library
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+            
+            // Preloader
+            setTimeout(function() {
+                document.querySelector('.preloader').style.display = 'none';
+            }, 1000);
+            
+            // Typed.js for animated text
+            let typed = new Typed('.typed-text', {
+                strings: ['Alex Turner', 'a Developer', 'a Student', 'an Innovator'],
+                typeSpeed: 100,
+                backSpeed: 50,
+                backDelay: 2000,
+                loop: true
+            });
+            
+            // Navigation active state
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Set the first section as active by default
+            sections[0].classList.add('active');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get the target section
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    // Hide all sections
+                    sections.forEach(section => section.classList.remove('active'));
+                    
+                    // Show target section
+                    targetSection.classList.add('active');
+                    
+                    // Update active nav link
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Close the mobile menu if open
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        navbarCollapse.classList.remove('show');
+                    }
+                    
+                    // Scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Animate skill progress bars
+            const skillBars = document.querySelectorAll('.skill-progress-bar');
+            
+            function animateSkillBars() {
+                skillBars.forEach(bar => {
+                    const progress = bar.getAttribute('data-progress');
+                    bar.style.width = `${progress}%`;
+                });
+            }
+            
+            // Animate milestone cards when in view
+            const milestoneCards = document.querySelectorAll('.milestone-card');
+            
+            function animateMilestones() {
+                milestoneCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('animate');
+                    }, index * 200);
+                });
+            }
+            
+            // Handle tab changes for animations
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const targetId = this.getAttribute('href').substring(1);
+                    
+                    if (targetId === 'skills') {
+                        setTimeout(animateSkillBars, 500);
+                    }
+                    
+                    if (targetId === 'future') {
+                        setTimeout(animateMilestones, 500);
+                    }
+                });
+            });
+            
+            // If we're on the skills page initially, animate the skill bars
+            if (sections[0].id === 'skills' || document.querySelector('.section.active').id === 'skills') {
+                setTimeout(animateSkillBars, 500);
+            }
+            
+            // If we're on the future page initially, animate the milestone cards
+            if (sections[0].id === 'future' || document.querySelector('.section.active').id === 'future') {
+                setTimeout(animateMilestones, 500);
+            }
+            
+            // Form submission (just prevent default for now)
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('This is a prototype. Form submission will be implemented in the full version.');
+                    contactForm.reset();
+                });
+            }
+            
+            // Scroll to top button
+            const scrollTopBtn = document.querySelector('.scroll-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 200) {
+                    scrollTopBtn.classList.add('active');
+                } else {
+                    scrollTopBtn.classList.remove('active');
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
